@@ -17,6 +17,7 @@ var game = (function(){
 
     var _proto = game.prototype;
     _proto.init = function(){
+        var self = this;
         this.width = this.options.width;
         this.height = this.options.height;
 
@@ -33,16 +34,17 @@ var game = (function(){
         this.loading(["../bin/res/atlas/role.atlas?s="+Math.random()],function(){
             //,"../bin/role/rocker_bg.png","../bin/role/rocker_btn.png","../bin/role/attack.png"
             //创建角色
-            var Role = new CreateRole({
+            self.Role = new CreateRole({
                 type : 'player',
                 name : 'cike',
                 player : '安云大神',
                 x : 800,
                 y : 300,
                 gongsu : 100,
-                yisu : 100
+                yisu : 100,
+                runSpeed : 4
             });
-            Laya.stage.addChild(Role);
+            Laya.stage.addChild(self.Role);
             
             
             
@@ -75,13 +77,75 @@ var game = (function(){
 			self.bgSprite.pos(0, 0);
 
             //初始化操纵杆
-            var rockerV =  new RockerView();
-            Laya.stage.addChild(rockerV);
+            this.rockerV =  new RockerView();
+            Laya.stage.addChild(this.rockerV);
+
+            //格斗场景定时器
+            Laya.timer.frameLoop(1,this,this.shenyuanLoop);
+
+
+
             //初始化攻击界面
-            var attackV =  new attackView();
-            Laya.stage.addChild(attackV);
+            this.attackV =  new attackView();
+            Laya.stage.addChild(this.attackV);
             
 		}));
+    }
+
+
+    _proto.shenyuanLoop = function(){
+        var rockerA = this.rockerV.angle;
+        if(rockerA!=-1){
+            
+        }
+
+        
+
+
+        // var xr = Math.cos(rockerA);
+        // var yr = Math.sin(rockerA);
+        // console.log(xr,yr);
+        var RoleVectors = this.getVectors(rockerA);
+        
+        var Role = this.Role;
+        Role.x += parseInt(RoleVectors.x*Role.runSpeed);
+        Role.y += parseInt(RoleVectors.y*Role.runSpeed);
+    }
+
+
+    _proto.getVectors = function(rockerA){
+
+        if(this.rockerV.angle2<30*30){
+            return {x:0,y:0};
+        }
+
+        if(rockerA>=23 && rockerA<=67){
+            //console.log('向右下移动');
+            return {x:0.7,y:0.6};
+        }else if(rockerA>=68 && rockerA<=113){
+            return {x:1,y:0};
+            //console.log('向右移动');
+        }else if(rockerA>=114 && rockerA<=157){
+            return {x:0.7,y:-0.6};
+            //console.log('向右上移动');
+        }else if(rockerA>=158 && rockerA<=203){
+            return {x:0,y:-0.8};
+            //console.log('向上移动');
+        }else if(rockerA>=204 && rockerA<=247){
+            return {x:-0.7,y:-0.6};
+            //console.log('向左上移动');
+        }else if(rockerA>=248 && rockerA<=293){
+            return {x:-1,y:0};
+            //console.log('向左移动');
+        }else if(rockerA>=294 && rockerA<=336){
+            return {x:-0.7,y:0.6};
+            //console.log('向左下移动');
+        }else if(rockerA>=0 && rockerA<=22 || rockerA>=337){
+            return {x:0,y:0.8};
+            //console.log('向下移动');
+        }else{
+            return {x:0,y:0};
+        }
     }
 
 

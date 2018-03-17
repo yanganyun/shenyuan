@@ -28,7 +28,6 @@ var RockerView = (function(_super){
     Laya.class(RockerView,"RockerView",_super);
     /*鼠标按下事件回调*/
     function onMouseDown(e){
-        console.log('mouse donw');
         //左右手遥控
         if(this.isleftControl){
             //如果按下时是右边屏幕位置或已经按下鼠标，则返回
@@ -56,7 +55,6 @@ var RockerView = (function(_super){
     }
     /*鼠标抬起事件回调*/
     function onMouseUp(e){
-        console.log('mouse up');
         //如果不是上次的点击id，返回（避免多点抬起，以第一次按下id为准）
         if(e.touchId != this.curTouchId)return;
         this.isDown = false;
@@ -68,14 +66,12 @@ var RockerView = (function(_super){
     }
     /*鼠标移动事件回调*/
     function onMove(e){
-        console.log('mouse move');
         //如果不是上次的点击id，返回（避免多点抬起，以第一次按下id为准）
         if(e.touchId != this.curTouchId)return;
         //将移动时的鼠标屏幕坐标转化为摇杆局部坐标
         
         var locationPos = this.globalToLocal(new Laya.Point(Laya.stage.mouseX-this.knobWc,Laya.stage.mouseY-this.knobHc),false);
         
-        console.log(locationPos);
         //更新摇杆控制点位置
         this.knob.pos(locationPos.x,locationPos.y);
         //更新控制点与摇杆中心点位置距离
@@ -88,17 +84,19 @@ var RockerView = (function(_super){
         if(this.angle < 0) this.angle += 360;
         //对角度取整
         this.angle = Math.round(this.angle);
+        
+        this.angle2 = dx+dy;
         //计算控制点在摇杆中的弧度
         this.radians = Math.PI / 180 * this.angle;
         //强制控制点与中心距离不超过80像素
-        if(dx+dy >= 80*80){
+        if(this.angle2 >= 80*80){
             //控制点在半径为80像素的位置（根据弧度变化）
             var x = Math.floor(Math.sin(this.radians) * 80 +this.originPiont.x-this.knobWc);
             var y = Math.floor(Math.cos(this.radians) * 80 + this.originPiont.y-this.knobHc);
             
+            
             this.knob.pos(x,y);
-        }
-        else{
+        }else{
             //不超过80像素取原坐标
             this.knob.pos(locationPos.x,locationPos.y);
         }

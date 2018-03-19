@@ -5,6 +5,7 @@ var Stage = Laya.Stage;
 var Sprite = Laya.Sprite;
 var Stat =  Laya.Stat;
 var Handler = Laya.Handler;
+var Loader = laya.net.Loader;
 
 var game = (function(){
 
@@ -34,9 +35,10 @@ var game = (function(){
         //添加菜单层
         this.menuBox = new Sprite();
         Laya.stage.addChild(this.menuBox);
+
         
 
-        //创建游戏格斗场景
+        //创建游戏格斗场景和操作界面、技能按钮
         this.createBg();
 
         //创建角色
@@ -71,6 +73,8 @@ var game = (function(){
         //初始化攻击界面
         this.attackV =  new attackView();
         this.optBox.addChild(this.attackV);
+        
+        console.log(this.attackV);
 
         //格斗场景定时器
         Laya.timer.frameLoop(1,this,this.shenyuanLoop);

@@ -1,12 +1,4 @@
-var Browser = Laya.Browser;
-var WebGL = Laya.WebGL;
-var Event = Laya.Event;
-var Stage = Laya.Stage;
-var Sprite = Laya.Sprite;
-var Stat =  Laya.Stat;
-var Handler = Laya.Handler;
-var Loader = laya.net.Loader;
-var Handler = laya.utils.Handler;
+
 
 (function(){
     //初始化游戏
@@ -49,6 +41,7 @@ var Handler = laya.utils.Handler;
         Laya.loader.load(arr, Handler.create(this, onLoaded));
     }
 
+    
 
     function onLoaded(){
         //游戏配置

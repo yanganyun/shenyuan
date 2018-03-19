@@ -1,7 +1,7 @@
 var RockerView = (function(_super){
     function RockerView(){
         RockerView.super(this);
-        this.size(140,140);
+        this.size(240,240);
          /***当前多点触摸id****/
         this.curTouchId = 0;
         /***手指（鼠标）是否按下****/
@@ -44,7 +44,7 @@ var RockerView = (function(_super){
          //更新摇杆到屏幕按下位置
          this.pos(Laya.stage.mouseX - (this.width / 2),Laya.stage.mouseY - (this.height / 2));
          //初始化摇杆控制点位置
-         this.knob.size(80,80);
+         this.knob.size(120,120);
          this.knob.pos(this.width/2-this.knob.width/2, this.height / 2 -this.knob.height/2);
          this.knobWc = this.knob.width/2;
          this.knobHc = this.knob.height/2;
@@ -89,10 +89,10 @@ var RockerView = (function(_super){
         //计算控制点在摇杆中的弧度
         this.radians = Math.PI / 180 * this.angle;
         //强制控制点与中心距离不超过80像素
-        if(this.angle2 >= 80*80){
+        if(this.angle2 >= 120*120){
             //控制点在半径为80像素的位置（根据弧度变化）
-            var x = Math.floor(Math.sin(this.radians) * 80 +this.originPiont.x-this.knobWc);
-            var y = Math.floor(Math.cos(this.radians) * 80 + this.originPiont.y-this.knobHc);
+            var x = Math.floor(Math.sin(this.radians) * 120 +this.originPiont.x-this.knobWc);
+            var y = Math.floor(Math.cos(this.radians) * 120 + this.originPiont.y-this.knobHc);
             
             
             this.knob.pos(x,y);

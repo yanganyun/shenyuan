@@ -33,6 +33,8 @@ var CreateRole = (function(_Sprite){
             animation.createFrames(['role/cike_stand_1.png','role/cike_stand_2.png','role/cike_stand_3.png','role/cike_stand_4.png'],'cike');
 
             animation.createFrames(['role/cike_jn1_1.png','role/cike_jn1_2.png','role/cike_jn1_3.png','role/cike_jn1_4.png','role/cike_jn1_5.png','role/cike_jn1_6.png','role/cike_jn1_7.png','role/cike_jn1_8.png'],'cike_jn1');
+            
+            animation.createFrames(['role/cike_run_1.png','role/cike_run_2.png','role/cike_run_3.png','role/cike_run_4.png','role/cike_run_5.png','role/cike_run_6.png','role/cike_run_7.png','role/cike_run_8.png'],'cike_run');
 
             isCache = true;
             
@@ -57,31 +59,26 @@ var CreateRole = (function(_Sprite){
 
         }
 
-        console.log(this);
 
     };
 
     //播放动画
     _proto.playAction = function(action){
         this.body.play(0,true,action);
+        this.playActionName = action;
     };
 
     //角色移动
     _proto.run = function(direction){
         var dirLower = direction.toLowerCase();
-        if(dirLower=='right'){
-            this.x += 1;
-            this.x += 1;
+        if(dirLower=='right' || !dirLower){
+            this.scaleX = -1;
         }else if(dirLower=='left'){
-            this.x -= 1;
-            this.x -= 1;
-        }else if(dirLower=='up' || dirLower=='top'){
-            this.y -= 1;
-            this.y -= 1;
-        }else if(dirLower=='down' || dirLower=='bottom'){
-            this.y += 1;
-            this.y += 1;
+            this.scaleX = 1;
         };
+        if(this.playActionName!='cike_run'){
+            this.playAction('cike_run');
+        }
     };
 
 

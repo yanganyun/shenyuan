@@ -2,4 +2,7 @@
    <item name="role/rocker_bg.png" type="Image" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
    <item name="role/rocker_btn.png" type="Image" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
    <item name="role/attack.png" type="Image" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="img/rocker_bg.png" type="Image" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="img/rocker_btn.png" type="Image" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="img/attack.png" type="Image" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
 </res>

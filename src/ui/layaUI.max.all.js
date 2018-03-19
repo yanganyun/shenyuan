@@ -39,6 +39,6 @@ var RockerUI=(function(_super){
 
 		}
 
-		RockerUI.uiView={"type":"View","props":{"width":667,"height":375},"child":[{"type":"Image","props":{"y":0,"x":0,"width":140,"skin":"role/rocker_bg.png","height":140},"child":[{"type":"Image","props":{"y":0,"x":0,"width":80,"var":"knob","skin":"role/rocker_btn.png","layoutEnabled":true,"height":80}}]}]};
+		RockerUI.uiView={"type":"View","props":{"width":667,"height":375},"child":[{"type":"Image","props":{"y":0,"x":0,"width":240,"skin":"img/rocker_bg.png","height":240},"child":[{"type":"Image","props":{"y":0,"x":0,"width":120,"var":"knob","skin":"img/rocker_btn.png","layoutEnabled":true,"height":120}}]}]};
 		return RockerUI;
 	})(View);

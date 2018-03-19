@@ -34,9 +34,11 @@ P 7E990267 vscroll.png
 P E466EB1C vslider$bar.png
 P 2BFF7046 vslider.png
 D img
-R B7D3C4D1 bg.jpg
-D role
 R 3F5A852A attack.png
+R B7D3C4D1 bg.jpg
+R 5CBD7EE4 rocker_bg.png
+R A847053A rocker_btn.png
+D role
 P 60838191 cike_jn1_1.png
 P FDCA4E78 cike_jn1_2.png
 P A5B98B06 cike_jn1_3.png
@@ -45,9 +47,15 @@ P 2383F777 cike_jn1_5.png
 P 25F71548 cike_jn1_6.png
 P 84551FC0 cike_jn1_7.png
 P B7EA27A6 cike_jn1_8.png
+P 9DB597D3 cike_run_1.png
+P 3F926289 cike_run_2.png
+P 323BAE99 cike_run_3.png
+P FFE0F13A cike_run_4.png
+P 1739536D cike_run_5.png
+P 494481DC cike_run_6.png
+P 85E5B449 cike_run_7.png
+P E39102F3 cike_run_8.png
 P 906831FB cike_stand_1.png
 P 0841A0F3 cike_stand_2.png
 P 5F9ACB72 cike_stand_3.png
 P 61EE7020 cike_stand_4.png
-R 9C33C2A3 rocker_bg.png
-R B57F7994 rocker_btn.png

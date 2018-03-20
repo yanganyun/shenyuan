@@ -45,7 +45,6 @@ var CreateRole = (function(_Sprite){
             roleH = 400;
         this.body = new Laya.Animation();
         this.body.size(roleW,roleH);
-        this.body.interval = 100;
         this.addChild(this.body);
         this.playAction(this.name);
         this.size(roleW,roleH);
@@ -63,8 +62,16 @@ var CreateRole = (function(_Sprite){
     };
 
     //播放动画
-    _proto.playAction = function(action){
-        this.body.play(0,true,action);
+    _proto.playAction = function(action,loop){
+        if(action=='cike'){
+            this.body.interval = 200; 
+        }else if(/_jn1/.test(action)){
+            var jn1Speed = 100*(1-(this.gongsu-100)/100);
+            this.body.interval = jn1Speed<50 ? 50 : jn1Speed; 
+        }else{
+            this.body.interval = 100;
+        };
+        this.body.play(0,!loop?loop:true,action);
         this.playActionName = action;
     };
 
@@ -80,6 +87,18 @@ var CreateRole = (function(_Sprite){
             this.playAction('cike_run');
         }
     };
+
+    _proto.playAttack = function(num){
+        if(num == 0 && this.playActionName!='cike_jn1'){
+            this.playAction('cike_jn1',false);
+
+            this.body.on(Event.COMPLETE,this,onComplete);
+
+            function onComplete(){
+                this.playAction('cike');
+            }
+        }
+    }
 
 
 

@@ -1,5 +1,5 @@
 var RockerView = (function(_super){
-    function RockerView(){
+    function RockerView(game){
         RockerView.super(this);
         this.size(240,240);
          /***当前多点触摸id****/
@@ -12,14 +12,18 @@ var RockerView = (function(_super){
         this.radians = -1;
         /***是否左手遥控****/
         this.isleftControl = true;   
+
+        game.optBox.addChild(this);
+
         //鼠标按下事件监听
-        Laya.stage.on(Laya.Event.MOUSE_DOWN,this,onMouseDown);
+        game.optBox.on(Laya.Event.MOUSE_DOWN,this,onMouseDown);
         //鼠标抬起事件监听
-        Laya.stage.on(Laya.Event.MOUSE_UP,this,onMouseUp);
+        game.optBox.on(Laya.Event.MOUSE_UP,this,onMouseUp);
         //鼠标是否移除屏幕事件监听
         // this.touchRect.on(Laya.Event.MOUSE_OUT,this,onBlur);
         //控制器中心点位置初始化
         this.originPiont = new Laya.Point(this.width/2,this.height/2);
+        
         
         
         //默认为控制器不显示

@@ -19,7 +19,7 @@ var AttackUI=(function(_super){
 
 		}
 
-		AttackUI.uiView={"type":"View","props":{"width":667,"height":375},"child":[{"type":"Image","props":{"var":"btn_attack","skin":"role/attack.png","right":20,"layoutEnabled":true,"bottom":20}}]};
+		AttackUI.uiView={"type":"View","props":{"width":667,"height":375},"child":[{"type":"Image","props":{"var":"btn_attack","skin":"img/attack.png","right":20,"mouseEnabled":true,"layoutEnabled":false,"hitTestPrior":true,"bottom":20}}]};
 		return AttackUI;
 	})(View);
 var RockerUI=(function(_super){

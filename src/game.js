@@ -31,6 +31,7 @@ var game = (function(){
         //添加操作层
         this.optBox = new Sprite();
         Laya.stage.addChild(this.optBox);
+        this.optBox.size(Laya.stage.width,Laya.stage.height);
 
         //添加菜单层
         this.menuBox = new Sprite();
@@ -46,9 +47,9 @@ var game = (function(){
             type : 'player',
             name : 'cike',
             player : '安云大神',
-            x : 800,
-            y : 300,
-            gongsu : 100,
+            x : Laya.stage.width/2,
+            y : Laya.stage.height/2,
+            gongsu : 120,
             runSpeed : 10
         });
         this.roleBox.addChild(self.Role);
@@ -59,6 +60,10 @@ var game = (function(){
 
     //创建格斗场景
     _proto.createBg = function(){
+
+        //隐藏菜单层
+
+        //格斗场景
         var self = this;
         var bg = new Laya.Image()
         bg.skin = "img/bg.jpg";
@@ -67,14 +72,14 @@ var game = (function(){
         
 
         //初始化操纵杆
-        this.rockerV =  new RockerView();
-        this.optBox.addChild(this.rockerV);
+        this.RockerView =  new RockerView(self);
+        
 
         //初始化攻击界面
-        this.attackV =  new attackView();
-        this.optBox.addChild(this.attackV);
+        this.attackView = new attackView(self);
         
-        console.log(this.attackV);
+        
+        
 
         //格斗场景定时器
         Laya.timer.frameLoop(1,this,this.shenyuanLoop);
@@ -96,12 +101,20 @@ var game = (function(){
     //摇杆控制行走
     _proto.rockerRun = function(){
 
-        var rockerV = this.rockerV;
+        var rockerV = this.RockerView;
         var Role = this.Role;
-        var RoleVectors = {x:0,y:0};
+
+        
+        //正在攻击状态
+        if(/_jn/.test(Role.playActionName)){
+            return;
+        }
 
         //摇杆误操作范围
         if(rockerV.angle2<10*10){
+            if(Role.playActionName!='cike'){
+                Role.playAction('cike');
+            }
             return;
         }
 
@@ -119,14 +132,15 @@ var game = (function(){
         }
 
 
+
         //行走方向
-        RoleVectors =  {x:Math.sin(rockerV.radians),y:Math.cos(rockerV.radians)};
+        var RoleVectors =  {x:Math.sin(rockerV.radians),y:Math.cos(rockerV.radians)};
 
         var layaW = Laya.stage.width;
         var layaH = Laya.stage.height;
         var runX = parseInt(RoleVectors.x*Role.runSpeed);
         var runY = parseInt(RoleVectors.y*Role.runSpeed*0.6); //上下行走减速20%
-        var minY = parseInt(layaH*0.34);
+        var minY = parseInt(layaH*0.25);
         //向量运动
         Role.x += runX;
         Role.y += runY;
@@ -139,8 +153,8 @@ var game = (function(){
         };
         if(Role.y < minY){
             Role.y = minY;
-        }else if(Role.y > layaH-50){
-            Role.y = layaH-50;
+        }else if(Role.y > layaH-50-100){
+            Role.y = layaH-50-100;
         }
 
         // if(rockerA>=23 && rockerA<=67){

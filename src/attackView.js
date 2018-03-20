@@ -1,16 +1,18 @@
 var attackView = (function(_super){
-    function attackView(){
+    function attackView(game){
         attackView.super(this);
 
-        this.btn_attack.size(150,150);
-        this.btn_attack.pos(Laya.stage.width-150,Laya.stage.height-150);
-
-
+        //设置技能按钮
+        this.btn_attack.size(140,140);
+        this.btn_attack.pos(Laya.stage.width-170,Laya.stage.height-170);
+        game.optBox.addChild(this.btn_attack);
         /*是否按下攻击按钮*/
         attackView.isAttack = false;
         //按钮按下与抬起事件监听
         this.btn_attack.on(Laya.Event.MOUSE_DOWN,this,onAttack);
-        this.stage.on(Laya.Event.MOUSE_UP,this,onUp);
+        this.btn_attack.on(Laya.Event.MOUSE_UP,this,onUp);
+
+        
     }
     Laya.class(attackView,"attackView",_super);
     /*抬起攻击按钮事件回调*/
@@ -24,6 +26,8 @@ var attackView = (function(_super){
         this.touchId = e.touchId;
         //获取事件传参值
         this.isAttack = true;
+        //攻击
+        shenyuan.Role.playAttack(0);
     }
     return attackView;
 })(ui.AttackUI);

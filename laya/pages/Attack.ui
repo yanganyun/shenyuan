@@ -15,7 +15,7 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"var":"btn_attack","skin":"role/attack.png","right":20,"layoutEnabled":true,"bottom":20},
+            "props":{"var":"btn_attack","skin":"img/attack.png","right":20,"mouseEnabled":true,"layoutEnabled":false,"hitTestPrior":true,"bottom":20},
             "nodeParent":1,
             "label":"Image(btn_attack)",
             "isDirectory":false,

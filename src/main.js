@@ -1,5 +1,4 @@
-
-
+var shenyuan = {};
 (function(){
     //初始化游戏
     Laya.init(Browser.width, 634, WebGL);
@@ -9,7 +8,7 @@
     Laya.stage.alignV = Laya.Stage.ALIGN_BOTTOM ;   //设置垂直对齐
     Laya.stage.screenMode = Stage.SCREEN_HORIZONTAL;  //横屏
     //显示帧频
-    Laya.Stat.show(100, 0);
+    //Laya.Stat.show(100, 0);
 
     //监听切后台 没什么卵用
     Laya.stage.on(Laya.Event.VISIBILITY_CHANGE, this, function(){ 
@@ -45,7 +44,7 @@
 
     function onLoaded(){
         //游戏配置
-        new game();
+        shenyuan = new game();
     }
 
 })();
